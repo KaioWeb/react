@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import axios from 'axios';
 import {Link} from "react-router-dom";
+//sweetalert2
+import Swal, { swal } from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 class listComponent extends React.Component  {
 
@@ -30,9 +33,46 @@ class listComponent extends React.Component  {
     .catch(error => {
       alert("Error server "+error)
     })
+  }
 
-    
+  onDelete(id){
+    Swal.fire({
+      title:'Are you sure?',
+      text:'you will not be able to recover this imaginary file!',
+      type: 'warning',
+      showCancelButton:'true',
+      confirmButtonText:'Yes, delete it!',
+      cancelButtonText:'No, keep it'
+    }).then((result) => {
+      if(result.value){
+        this.sendDelete(id)
+      }else if(result.dismiss === Swal.DismissReason.cancel){
+        Swal.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+  }
 
+  sendDelete(userId){
+    const baseUrl = "http://localhost:4000/employee/delete"
+    axios.post(baseUrl,{
+      id:userId
+    })
+    .then(response => {
+      if(response.data.success){
+        Swal.fire(
+          'Deleted!',
+          'Your employeed has been deleted.',
+          'success'
+        )
+      }
+    })
+    .catch( error => {
+      alert("Error 325")
+    })
   }
 
   render()
@@ -72,7 +112,7 @@ class listComponent extends React.Component  {
               <Link class="btn btn-outline-info" to={"/edit/"+data.id}>Edit</Link>
             </td>
             <td>
-              <Link class="btn btn-outline-danger "> Delete </Link>
+              <button class="btn btn-outline-danger" onClick={()=>this.onDelete(data.id)}> Delete </button>
             </td>
           </tr>
       )

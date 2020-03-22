@@ -49,6 +49,28 @@ class EditComponent extends React.Component{
     })
   }
 
+  sendUpdate(){
+    let userId = this.props.match.params.employeeId;
+    const baseUrl = "http://localhost:4000/employee/update/"+userId;
+    const datapost = {
+      name: this.state.campName,
+      email: this.state.campEmail,
+      phone: this.state.campPhone,
+      address: this.state.campAddress,
+      role: this.state.selectRole
+    }
+    axios.post(baseUrl, datapost)
+    .then(response=>{
+      if(response.data.success===true){
+        alert(response.data.message);
+      }else{
+        alert("Error");
+      }
+    }).catch(error=>{
+      alert("Error 34 "+error);
+    })
+  }
+
   render(){
     return (
       <div>
@@ -85,7 +107,7 @@ class EditComponent extends React.Component{
           <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St"
             value={this.state.campAddress} onChange={(value)=> this.setState({campAddress:value.target.value})}/>
         </div> 
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary" onClick={()=>this.sendUpdate()}>Update</button>
       </div>
     );
   }

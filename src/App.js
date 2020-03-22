@@ -32,7 +32,7 @@ function App() {
         <div class="container py-4">
           <div class="row">
 
-            // Add component list, form, edit.
+            <p>// Add component list, form, edit.</p>
 
             <Route path="/" exact component={List} />
             <Route path="/form" component={Form} />

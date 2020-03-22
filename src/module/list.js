@@ -15,7 +15,7 @@ class listComponent extends React.Component  {
   }
 
   componentDidMount(){
-    const url = "http://localhost:3000/employee/list";
+    const url = "http://localhost:4000/employee/list";
     axios.get(url)
     .then( res => { 
       if(res.data.success){

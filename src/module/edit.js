@@ -5,7 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 import axios from 'axios';
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:4000";
 
 class EditComponent extends React.Component{
 
@@ -23,7 +23,7 @@ class EditComponent extends React.Component{
   }
 
   componentDidMount(){
-    let userId = this.props.match.params.id;
+    let userId = this.props.match.params.employeeId;
     const url = baseUrl+"/employee/get/"+userId
     axios.get(url)
     .then(res=>{
@@ -68,7 +68,7 @@ class EditComponent extends React.Component{
           <div class="form-group col-md-6">
             <label for="inputState">Role</label>
             <select id="inputState" class="form-control" onChange={(value)=> this.setState({selectRole:value.target.value})}>
-              <option selected value={this.state.dataEmployee.roleId}>{this.state.dataEmployee.role}</option>
+              <option selected value={this.state.dataEmployee.roleId}>{this.state.stringRole}</option>
               <option value="1">Admin</option>
               <option value="2">Project Manager</option>
               <option value="3">Programer</option>

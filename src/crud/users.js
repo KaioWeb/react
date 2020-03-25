@@ -1,9 +1,10 @@
 import React from 'react';
 import { List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateInput } from 'react-admin';
-import BookIcon from '@material-ui/core/svg-icons/action/book';
+import BookIcon from '@material-ui/core/SvgIcon/SvgIcon';
+import PropTypes from 'prop-types'; 
 export const UserIcon = BookIcon;
 
-export const UserList = (props) => {
+export const UserList = (props) => (
     <List {...props}>
         <Datagrid>
             <TextField source="id" />
@@ -14,7 +15,7 @@ export const UserList = (props) => {
             {/* <EditButton basePath="/posts" /> */}
         </Datagrid>
     </List>
-}
+);
 
 const UserTitle = ({ record }) => {
     return <span>Post {record ? `"${record.title}"` : ''}</span>;

@@ -1,6 +1,5 @@
 import { Admin, Resource } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
-import PropTypes from 'prop-types'; 
 import React from 'react';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -14,15 +13,15 @@ import { render } from 'react-dom';
 
 import restProvider from 'ra-data-simple-rest';
 import { UserList, UserEdit, UserCreate, UserIcon } from './crud/users';
-//import { EmployeeList, EmployeeEdit, EmployeeCreate, EmployeeIcon } from './crud/employee';
+import { EmployeeList, EmployeeEdit, EmployeeCreate, EmployeeIcon } from './crud/employee';
 
 
 
 function App(){
   return (  
     <div className="App">
-    <Admin dataProvider={jsonServerProvider('http://jsonplaceholder.typicode.com/users')}>
-      <Resource name="users" list={UserList}></Resource>
+    <Admin dataProvider={jsonServerProvider('http://localhost:4000')}>
+      <Resource name="employee" list={EmployeeList}></Resource>
     </Admin>    
     </div>
   );
